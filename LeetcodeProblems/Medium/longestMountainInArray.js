@@ -62,7 +62,7 @@ var longestMountain = function (arr) {
       right = i + 1;
     if (arr[i] > arr[left] && arr[i] > arr[right]) {
       while (left >= 0 && arr[left - 1] < arr[left]) left--;
-      while (right < n && arr[right + 1] > arr[right]) right++;
+      while (right < n && arr[right + 1] < arr[right]) right++;
       sum = Math.max(sum, right - left + 1);
     }
   }
