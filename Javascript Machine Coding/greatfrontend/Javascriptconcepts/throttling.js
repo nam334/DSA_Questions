@@ -1,18 +1,20 @@
-//click of a button
-const clickme = document.getElementById("clickme");
-const clickHandler = () => {
-  console.log("clicked");
-};
+function expensive(data) {
+  console.log("expensive", data);
+}
 
-const debounce = (func, delay) => {
-  let timer;
-  console.log("initial id", timer);
+const throttle = (func, wait) => {
+  let flag = true;
   return (...args) => {
-    console.log("previous id", timer);
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      func(...args);
-    }, delay);
+    let context = this,
+      arg = args;
+    if (flag) {
+      func.apply(context, arg);
+      flag = false;
+    }
+    setTimeout(() => {
+      flag = true;
+    }, wait);
   };
 };
-clickme.addEventListener("click", debounce(clickHandler, 500));
+
+window.addEventListener("resize", throttle(expensive("namrata"), 500));
