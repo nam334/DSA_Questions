@@ -5,10 +5,10 @@ function expensive(data) {
 const throttle = (func, wait) => {
   let flag = true;
   return (...args) => {
-    let context = this,
-      arg = args;
+    // let context = this,
+    let arg = args;
     if (flag) {
-      func.apply(context, arg);
+      func.apply(this, arg);
       flag = false;
     }
     setTimeout(() => {
