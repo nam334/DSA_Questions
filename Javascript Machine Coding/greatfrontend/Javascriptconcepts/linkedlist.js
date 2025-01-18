@@ -84,6 +84,31 @@ class LinkedList {
     }
     if (current.next) current.next = current.next.next;
   }
+
+  reverseTheList() {
+    let prev = null,
+      current = this.head,
+      nextNode;
+    while (current) {
+      nextNode = current.next;
+      current.next = prev;
+      prev = current;
+      current = nextNode;
+    }
+    return prev;
+  }
+
+  removeLinkedListElements(target) {
+    let dummy_Node = new Node(-1);
+    dummy_Node.next = this.head;
+    let current_Node = dummy_Node;
+    while (current_Node.next) {
+      if (current_Node.next.data == target) {
+        current_Node.next = current_Node.next.next;
+      } else current_Node = current_Node.next;
+    }
+    return dummy_Node.nex;
+  }
   print() {
     let current = this.head;
     while (current) {
@@ -99,4 +124,10 @@ linkedList.insertAtHead(20);
 linkedList.insertAtHead(30);
 linkedList.insertAtEnd(1);
 linkedList.print();
+// console.log("After reverse");
+// linkedList.reverseTheList();
+// linkedList.print();
 // console.log(linkedList.size());
+console.log("after removing 20");
+linkedList.removeLinkedListElements(20);
+linkedList.print();

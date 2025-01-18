@@ -34,6 +34,17 @@ class LinkedList {
     }
     return slow;
   }
+  //   reverseList() {
+  //     let temp = this.head;
+  //     let val = null;
+  //     while (temp.next) {
+  //       temp = temp.next;
+  //     }
+  //     console.log("temp", temp);
+  //     val = this.head;
+  //     temp.next = this.head;
+  //     val.next = this.head.next;
+  //   }
 }
 
 const linkedItem = new LinkedList();
@@ -43,14 +54,9 @@ linkedItem.insertAtHead(30);
 linkedItem.insertAtHead(40);
 linkedItem.insertAtHead(50);
 linkedItem.insertAtHead(60);
+console.log("linked list is");
 linkedItem.print();
-console.log("Middle element is", linkedItem.middleElement());
-// var middleNode = function (head) {
-//   let slow = head,
-//     fast = head;
-//   while (fast && fast.next) {
-//     slow = slow.next;
-//     fast = fast.next.next;
-//   }
-//   return slow;
-// };
+// console.log("Middle element is", linkedItem.middleElement());
+// console.log("after reverse");
+// linkedItem.reverseList();
+// linkedItem.print();
