@@ -32,10 +32,16 @@ var maximumSubarraySum = function (nums, k) {
   res = [];
 
   while (end < nums.length) {
-    if (nums[end] !== nums[end - 1]) sum += nums[end];
+    if (end > 0) {
+      if (nums[end] !== nums[end - 1]) sum += nums[end];
+    } else if (end === 0) {
+      if (nums[end] !== nums[end + 1]) sum += nums[end];
+    }
     if (end - start + 1 < k) {
+      console.log(end - start + 1, k);
       end++;
     } else {
+      console.log("sum", sum);
       if (max < sum) max = sum;
       sum -= nums[start];
       start++;
@@ -45,4 +51,4 @@ var maximumSubarraySum = function (nums, k) {
   return max;
 };
 
-console.log(maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3));
+console.log(maximumSubarraySum([1, 1, 1, 7, 8, 9], 3));
