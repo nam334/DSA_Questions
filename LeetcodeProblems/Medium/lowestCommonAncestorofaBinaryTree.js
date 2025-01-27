@@ -27,3 +27,7 @@ var lowestCommonAncestor = function (root, p, q) {
   if (left !== null && right === null) return left;
   if (left !== null && root !== null) return root;
 };
+
+console.log(
+  lowestCommonAncestor([3, 5, 1, 6, 2, 0, 8, null, null, 7, 4], 5, 1)
+);
