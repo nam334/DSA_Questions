@@ -21,7 +21,7 @@
 var maxVowels = function (s, k) {
   let start = 0,
     end = 0,
-    max = -1,
+    max = 0,
     count = 0;
   while (end < s.length) {
     if (
