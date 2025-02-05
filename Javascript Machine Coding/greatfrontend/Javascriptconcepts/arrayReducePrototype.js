@@ -13,3 +13,5 @@ Array.prototype.myReduce = function (func, acc) {
 
 let result = arr.myReduce((acc, curr) => acc + curr, sum);
 console.log(result);
+
+students.filter((students) => students.marks < 60);
