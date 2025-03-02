@@ -25,18 +25,37 @@
 
 //palindrone
 
-function palindrone(str) {
-  let p = 0,
-    n = str.length;
-  return checkPalindrome(str, p, n);
+// function palindrone(str) {
+//   let p = 0,
+//     n = str.length;
+//   return checkPalindrome(str, p, n);
+// }
+
+// function checkPalindrome(str, p, n) {
+//   if (p >= n / 2) return true;
+//   if (str[p] !== str[n - p - 1]) return false;
+//   p = p + 1;
+//   return checkPalindrome(str, p, n);
+// }
+
+// console.log(palindrone("MADAM"));
+// //console.log(palindrone("TASK"));
+
+//printing subsequence
+
+function sub(i, n, arr, ar) {
+  if (i >= n) {
+    console.log(arr);
+    return;
+  }
+  arr.push(ar[i]);
+  sub(i + 1, n, arr, ar);
+  arr.pop(ar[i]);
+  sub(i + 1, n, arr, ar);
+}
+function subsequence(ar) {
+  let n = ar.length;
+  return sub(0, n, [], ar);
 }
 
-function checkPalindrome(str, p, n) {
-  if (p >= n / 2) return true;
-  if (str[p] !== str[n - p - 1]) return false;
-  p = p + 1;
-  return checkPalindrome(str, p, n);
-}
-
-console.log(palindrone("MADAM"));
-//console.log(palindrone("TASK"));
+subsequence([3, 1, 2]);
