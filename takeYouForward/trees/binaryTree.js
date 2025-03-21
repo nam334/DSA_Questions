@@ -84,6 +84,27 @@ class BinaryTree {
     }
     return result;
   }
+
+  diameterOfTree(node = this.root, max) {
+    if ((node = null)) return 0;
+    let lh = this.diameterOfTree(node.left, max);
+    let rh = this.diameterOfTree(node.right, max);
+    max = Math.max(max, lh + rh);
+    return 1 + Math.max(lh, rh);
+  }
+  iterativePostOrder() {
+    if (!this.root) return;
+    let stack1 = [],
+      stack2 = [];
+    stack1.push(this.root);
+    while (stack1.length > 0) {
+      let val = stack1.pop();
+      stack2.push(val.data);
+      if (val.left) stack1.push(val.left);
+      if (val.right) stack1.push(val.right);
+    }
+    return stack2.reverse();
+  }
 }
 
 const tree = new BinaryTree(1);
@@ -91,8 +112,9 @@ tree.root.left = new TreeNode(2);
 tree.root.right = new TreeNode(3);
 tree.root.left.left = new TreeNode(4);
 tree.root.left.right = new TreeNode(5);
-tree.root.left.right.left = new TreeNode(6);
-tree.root.left.right.right = new TreeNode(7);
+tree.root.right.left = new TreeNode(6);
+tree.root.right.left.right = new TreeNode(7);
+tree.root.right.left.right.right = new TreeNode(8);
 
 console.log("Preorder traversal", tree.preorderTraversal());
 console.log("Postorder traversal", tree.postorderTraversal());
@@ -100,3 +122,4 @@ console.log("Inorder traversal", tree.inorderTraversal());
 console.log("Level order traversal", tree.levelOrderTraversal());
 console.log("Iteartive preorder", tree.iterativePreOrder());
 console.log("Iteartive ineorder", tree.iterativeInOrder());
+console.log("Iterative postorder", tree.iterativePostOrder());
