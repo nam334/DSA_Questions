@@ -52,6 +52,38 @@ class BinaryTree {
     }
     return result;
   }
+
+  iterativePreOrder() {
+    if (!this.root) return;
+    let stack = [],
+      res = [];
+    stack.push(this.root);
+    while (stack.length > 0) {
+      let val = stack.pop();
+      res.push(val.data);
+      if (val.right) stack.push(val.right);
+      if (val.left) stack.push(val.left);
+    }
+    return res;
+  }
+
+  iterativeInOrder() {
+    let stack = [],
+      result = [];
+    let node = this.root;
+    while (stack.length > 0 || node !== null) {
+      if (node !== null) {
+        stack.push(node);
+        node = node.left;
+      } else {
+        // if (stack.length === 0) break;
+        let val = stack.pop();
+        result.push(val.data);
+        node = val.right;
+      }
+    }
+    return result;
+  }
 }
 
 const tree = new BinaryTree(1);
@@ -59,10 +91,12 @@ tree.root.left = new TreeNode(2);
 tree.root.right = new TreeNode(3);
 tree.root.left.left = new TreeNode(4);
 tree.root.left.right = new TreeNode(5);
-tree.root.right.left = new TreeNode(6);
-tree.root.right.right = new TreeNode(7);
+tree.root.left.right.left = new TreeNode(6);
+tree.root.left.right.right = new TreeNode(7);
 
 console.log("Preorder traversal", tree.preorderTraversal());
 console.log("Postorder traversal", tree.postorderTraversal());
 console.log("Inorder traversal", tree.inorderTraversal());
 console.log("Level order traversal", tree.levelOrderTraversal());
+console.log("Iteartive preorder", tree.iterativePreOrder());
+console.log("Iteartive ineorder", tree.iterativeInOrder());
