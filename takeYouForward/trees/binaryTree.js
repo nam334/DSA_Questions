@@ -118,6 +118,30 @@ class BinaryTree {
     maxPath(root);
     return max;
   };
+
+  zigzagLevelOrder = function (node = this.root) {
+    if (!node) return [];
+    let flag = true,
+      queue = [],
+      ds = [],
+      res = [];
+    queue.push(node);
+    while (queue.length > 0) {
+      ds = [];
+      let n = queue.length;
+      for (let i = 0; i < n; i++) {
+        let value = queue.shift();
+        ds.push(value.data);
+        if (value.left) queue.push(value.left);
+        if (value.right) queue.push(value.right);
+      }
+      if (flag) res.push(ds);
+      else res.push(ds.reverse());
+      flag = !flag;
+    }
+    console.log(res);
+    return res;
+  };
 }
 
 const tree = new BinaryTree(1);
@@ -136,3 +160,4 @@ console.log("Level order traversal", tree.levelOrderTraversal());
 console.log("Iteartive preorder", tree.iterativePreOrder());
 console.log("Iteartive ineorder", tree.iterativeInOrder());
 console.log("Iterative postorder", tree.iterativePostOrder());
+console.log("Zig zag traversal", tree.zigzagLevelOrder());
