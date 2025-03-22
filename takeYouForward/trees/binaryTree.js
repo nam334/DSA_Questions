@@ -105,6 +105,19 @@ class BinaryTree {
     }
     return stack2.reverse();
   }
+  maxPathSum = function (root) {
+    if (root.val && !root.left && !root.right) return root.val;
+    let max = 0;
+    function maxPath(root) {
+      if (root === null) return 0;
+      let ls = Math.max(0, maxPath(root.left));
+      let rs = Math.max(0, maxPath(root.right));
+      max = Math.max(max, ls + rs + root.val);
+      return root.val + Math.max(ls, rs);
+    }
+    maxPath(root);
+    return max;
+  };
 }
 
 const tree = new BinaryTree(1);
