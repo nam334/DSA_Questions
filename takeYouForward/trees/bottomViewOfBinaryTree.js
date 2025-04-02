@@ -49,15 +49,65 @@ function leftView(node, level, ds) {
   leftView(node.right, level + 1, ds);
 }
 
+function isSymmetric(root) {
+  return root === null || isSymmetricHelper(root.left, root.right);
+}
+
+function isSymmetricHelper(left, right) {
+  if (left === null || right === null) return left === right;
+  if (left.value !== right.value) return false;
+  return (
+    isSymmetricHelper(left.left, right.right) &&
+    isSymmetricHelper(left.right, right.left)
+  );
+}
+
+function printPath(root, val) {
+  let arr = [];
+  printRootToNode(root, arr, val);
+  return arr;
+}
+
+function printRootToNode(root, arr, val) {
+  if (!root) return false;
+  arr.push(root.value);
+  if (root.value === val) return true;
+
+  if (
+    printRootToNode(root.left, arr, val) ||
+    printRootToNode(root.right, arr, val)
+  )
+    return true;
+
+  arr.pop();
+  return false;
+}
+
+function lca(root, l, r) {
+  return leastCommonAncestor(root, l, r);
+}
+
+function leastCommonAncestor(root, p, q) {
+  if (root === null || root.value === p || root.value === q) return root;
+  let left = leastCommonAncestor(root.left, p, q);
+  let right = leastCommonAncestor(root.right, p, q);
+  if (left === null) return right;
+  else if (right === null) return left;
+  else return root.value;
+}
+
 const root = new TreeNode(1);
 root.left = new TreeNode(2);
 root.right = new TreeNode(3);
-root.left.left = new TreeNode(4);
-root.left.right = new TreeNode(5);
-root.left.right.left = new TreeNode(6);
+root.right.left = new TreeNode(4);
+root.right.left.left = new TreeNode(8);
+root.right.right = new TreeNode(5);
+root.right.right.left = new TreeNode(6);
+root.right.right.right = new TreeNode(7);
 
-root.right.right = new TreeNode(7);
-
-console.log("Bottom view of binary tree", bottomViewOfBinaryTree(root));
-console.log("Right side view", RightSideView(root));
-console.log("Left side view", LeftSideView(root));
+// console.log("Bottom view of binary tree", bottomViewOfBinaryTree(root));
+// console.log("Right side view", RightSideView(root));
+// console.log("Left side view", LeftSideView(root));
+// console.log("Check Symmetric", isSymmetric(root));
+// console.log("Print path from root to node", printPath(root, 7));
+console.log("LCA is", lca(root, 7, 8));
