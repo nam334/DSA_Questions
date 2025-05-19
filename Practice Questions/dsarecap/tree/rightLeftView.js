@@ -37,6 +37,18 @@ class RightLeftView {
     this.leftView(root, ds, level);
     return ds;
   }
+
+  isSymmetricHelper(left, right) {
+    if (left === null || right === null) return left === right;
+    if (left.value !== right.value) return false;
+    return (
+      this.isSymmetricHelper(left.left, right.right) &&
+      this.isSymmetricHelper(left.right, right.left)
+    );
+  }
+  isSymmetric(root) {
+    return this.isSymmetricHelper(root.left, root.right);
+  }
 }
 
 const tree = new RightLeftView(1);
