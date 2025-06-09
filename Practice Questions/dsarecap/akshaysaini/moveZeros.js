@@ -6,19 +6,33 @@
 
 // Input: nums = [0]
 // Output: [0]
+// var moveZeroes = function (nums) {
+//   let n = nums.length;
+//   let numsCopy = nums.slice(0, n);
+//   let p1 = 0,
+//     p2 = 0;
+//   for (let i = 0; i < n; i++) {
+//     if (numsCopy[p2] !== 0) {
+//       nums[p1] = numsCopy[p2];
+//       p1++;
+//     }
+//     p2++;
+//   }
+//   for (let i = p1; i < n; i++) nums[i] = 0;
+//   return nums;
+// };
+
 var moveZeroes = function (nums) {
-  let n = nums.length;
-  let numsCopy = nums.slice(0, n);
-  let p1 = 0,
-    p2 = 0;
-  for (let i = 0; i < n; i++) {
-    if (numsCopy[p2] !== 0) {
-      nums[p1] = numsCopy[p2];
-      p1++;
+  let x = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[x] = nums[i];
+      x++;
     }
-    p2++;
   }
-  for (let i = p1; i < n; i++) nums[i] = 0;
+  for (let i = x; i < nums.length; i++) {
+    nums[i] = 0;
+  }
   return nums;
 };
 
